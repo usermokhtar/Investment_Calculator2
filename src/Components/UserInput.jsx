@@ -1,23 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const UserInput = () => {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  useEffect(() => {
-    console.log('Initial userInput state:', userInput);
-  }, []);
-
-  const handleInput = (identifier, value) => {
-    setUserInput((prevUserInput) => {
-      return { ...prevUserInput, [identifier]: +value };
-    });
-  };
-
+const UserInput = ({ onHandel, userInput }) => {
   return (
     <section id='user-input'>
       <div className='input-group'>
@@ -30,7 +13,7 @@ const UserInput = () => {
             required
             value={userInput.initialInvestment}
             onChange={(event) =>
-              handleInput('initialInvestment', event.target.value)
+              onHandel('initialInvestment', event.target.value)
             }
           />
         </p>
@@ -43,7 +26,7 @@ const UserInput = () => {
             required
             value={userInput.annualInvestment}
             onChange={(event) =>
-              handleInput('annualInvestment', event.target.value)
+              onHandel('annualInvestment', event.target.value)
             }
           />
         </p>
@@ -55,9 +38,7 @@ const UserInput = () => {
             id='expectedReturn'
             required
             value={userInput.expectedReturn}
-            onChange={(event) =>
-              handleInput('expectedReturn', event.target.value)
-            }
+            onChange={(event) => onHandel('expectedReturn', event.target.value)}
           />
         </p>
         <p>
@@ -68,7 +49,7 @@ const UserInput = () => {
             id='duration'
             required
             value={userInput.duration}
-            onChange={(event) => handleInput('duration', event.target.value)}
+            onChange={(event) => onHandel('duration', event.target.value)}
           />
         </p>
       </div>
